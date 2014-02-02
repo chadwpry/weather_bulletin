@@ -9,7 +9,7 @@ require "weather_bulletin/application"
 
 ENV['RACK_ENV'] = 'development'
 
-require "pry" if ENV['RACK_ENV'] == "development"
+require "pry" if ENV['DEBUG'] == "true"
 
 Mongoid.load! "./config/mongoid.yml"
 
