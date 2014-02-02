@@ -1,0 +1,15 @@
+development:
+  sessions:
+    default:
+      uri: mongodb://localhost/weather-bulletin
+      options:
+        skip_version_check: true
+        safe: true
+
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOLAB_URI'] %>
+      options:
+        skip_version_check: true
+        safe: true

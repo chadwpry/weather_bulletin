@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "mongoid"
+require "irb"
+require "pry"
+
+$:.unshift "./lib"
+
+require "weather_bulletin"
+
+ENV['RACK_ENV'] = 'development'
+
+Mongoid.load! "./config/mongoid.yml"
+
+IRB.start
