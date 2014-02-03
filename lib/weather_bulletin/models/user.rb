@@ -27,7 +27,7 @@ module WeatherBulletin
     field :uid
     field :nickname
     field :name
-    filld :base_name
+    field :base_name
     field :location
     field :image
     field :description
