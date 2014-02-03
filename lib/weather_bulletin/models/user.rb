@@ -27,6 +27,7 @@ module WeatherBulletin
     field :uid
     field :nickname
     field :name
+    filld :base_name
     field :location
     field :image
     field :description
@@ -37,10 +38,11 @@ module WeatherBulletin
     def self.find_by(env)
       user = User.find_or_initialize_by(provider: env["provider"], uid: env["uid"])
 
-      user.nickname = env["info"]["nickname"]
-      user.name     = env["info"]["name"]          unless user.name
-      user.location = env["info"]["location"]
-      user.image    = env["info"]["image"]
+      user.nickname    = env["info"]["nickname"]
+      user.name        = env["info"]["name"]
+      user.base_name   = user.name                  if user.new_record?
+      user.location    = env["info"]["location"]
+      user.image       = env["info"]["image"]
       user.description = env["info"]["description"]
       user.credentials = env["credentials"]
 
