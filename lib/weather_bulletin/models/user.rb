@@ -38,7 +38,7 @@ module WeatherBulletin
       user = User.find_or_initialize_by(provider: env["provider"], uid: env["uid"])
 
       user.nickname = env["info"]["nickname"]
-      user.name     = env["info"]["name"]           unless user.name
+      user.name     = strip_weather(env["info"]["name"])
       user.location = env["info"]["location"]
       user.image    = env["info"]["image"]
       user.description = env["info"]["description"]
@@ -46,6 +46,14 @@ module WeatherBulletin
 
       user.save
       user
+    end
+
+    def strip_weather(input_name)
+      input_name.strip!
+      FORECAST_ICONS.values.each do |icon|
+        input_name.gsub!(" #{icon}", "")
+      end
+      input_name
     end
 
     def current_weather
