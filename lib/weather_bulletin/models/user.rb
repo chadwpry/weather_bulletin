@@ -38,7 +38,7 @@ module WeatherBulletin
       user = User.find_or_initialize_by(provider: env["provider"], uid: env["uid"])
 
       user.nickname = env["info"]["nickname"]
-      user.name     = strip_weather(env["info"]["name"])
+      user.name     = env["info"]["name"]          unless user.name
       user.location = env["info"]["location"]
       user.image    = env["info"]["image"]
       user.description = env["info"]["description"]

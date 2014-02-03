@@ -6,9 +6,7 @@ gem "haml"
 gem "mongoid"
 gem "omniauth"
 gem "omniauth-twitter"
+gem "pry"
 gem "puma"
 gem "sinatra"
 
-group :development do
-  gem "pry"
-end
