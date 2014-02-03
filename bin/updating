@@ -1,14 +1,17 @@
 #!/usr/bin/env ruby
 
 require "mongoid"
-require "pry"
 
 $:.unshift "./lib"
 
 require "weather_bulletin"
 
-ENV['RACK_ENV'] = 'development'
+ENV['RACK_ENV'] = ENV['RACK_ENV'] || 'development'
 
 Mongoid.load! "./config/mongoid.yml"
 
-OAuthHelpers.update_twitter_name WeatherBulletin::User.last
+WeatherBulletin::User.all.each do |user|
+  user.update_twitter_name
+  user.update_twitter_header_image
+end
+

@@ -94,7 +94,7 @@ module WeatherBulletin
     end
 
     def update_twitter_name
-      twitter_access_token.post "https://api.twitter.com/1.1/account/update_profile.json", {name: "#{name} #{weather_icon}"}
+      twitter_access_token.post "https://api.twitter.com/1.1/account/update_profile.json", {name: "#{base_name} #{weather_icon}"}
     end
 
     def update_twitter_header_image
