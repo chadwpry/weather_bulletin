@@ -2,6 +2,7 @@
 *.rbc
 .bundle
 .config
+bower_components
 coverage
 InstalledFiles
 lib/bundler/man
