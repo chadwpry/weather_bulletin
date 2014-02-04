@@ -23,9 +23,7 @@ module WeatherBulletin
     end
 
     get '/' do
-      <<-HTML
-        <a href='/auth/twitter'>Sign in with Twitter</a>
-      HTML
+      haml :index
     end
 
     get '/profile' do

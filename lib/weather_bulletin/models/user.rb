@@ -67,7 +67,7 @@ module WeatherBulletin
     end
 
     def geocode
-      @geocode = JSON.parse(open(URI.encode("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=#{location}")).string)["results"].first["geometry"]
+      @geocode ||= JSON.parse(open(URI.encode("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=#{location}")).string)["results"].first["geometry"]
     end
 
     def latitude
