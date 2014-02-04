@@ -1,3 +1,4 @@
+require "newrelic_rpm"
 require "omniauth"
 require "omniauth-twitter"
 require "mongoid"
