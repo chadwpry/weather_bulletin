@@ -9,7 +9,12 @@ module Sinatra
       klass.get '/auth/:name/callback' do
         @current_user = CONFIGURATION[:on_create].call(omniauth_auth)
         session['entity_id'] = @current_user.id
-        redirect "/profile"
+        redirect '/profile'
+      end
+
+      klass.get '/logout' do
+        logout
+        redirect '/'
       end
 
       def klass.authenticate(options = {})
@@ -27,6 +32,11 @@ module Sinatra
 
     def current_user
       @current_user || CONFIGURATION[:on_read].call(session['entity_id'])
+    end
+
+    def logout
+      @current_user = nil
+      session['entity_id'] = nil
     end
 
     private

@@ -27,10 +27,9 @@ module WeatherBulletin
     end
 
     get '/profile' do
-      <<-HTML
-        Profile Page
-        #{current_user.name}
-      HTML
+      @current_user = current_user
+      @themes = ["Original"]
+      haml :profile
     end
   end
 end
