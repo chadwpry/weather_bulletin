@@ -1,5 +1,4 @@
 require "sinatra/authentication"
-require "sinatra/router"
 require "weather_bulletin"
 
 module WeatherBulletin
@@ -8,13 +7,13 @@ module WeatherBulletin
       set :haml, format: :html5
       set :logging, true
       set :sessions, true
-      set :inline_templates, true
     end
 
     include Sinatra::Authentication
-    include Sinatra::Router
 
     authenticate only: ["/profile"],
+      on_auth_route: -> (request) {"/auth/twitter"},
+      on_auth_complete: -> (env) {"/profile"},
       on_create: -> (env) {User.find_by(env)},
       on_read: -> (id) {User.where(id: id).first}
 

@@ -9,7 +9,7 @@ module Sinatra
       klass.get '/auth/:name/callback' do
         @current_user = CONFIGURATION[:on_create].call(omniauth_auth)
         session['entity_id'] = @current_user.id
-        redirect '/profile'
+        redirect CONFIGURATION[:on_auth_complete].call(omniauth_auth)
       end
 
       klass.get '/logout' do
@@ -27,7 +27,7 @@ module Sinatra
     end
 
     def authenticate!
-      redirect("/auth/twitter") unless current_user
+      redirect(CONFIGURATION[:on_auth_route].call(request)) unless current_user
     end
 
     def current_user
